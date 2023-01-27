@@ -1,5 +1,12 @@
 using System;
 using System.Collections.Generic;
+// what i did to exceed the requirements was add an exeption handler to the file as well as looping variables to keep the program running until the user decides to quit. 
+// i also added code that handles the adding of the .exe to the end of filenames. i compiled the code for loading the file and creating the file into one class for the most part as well
+
+
+
+
+
 
 class Program
 {
