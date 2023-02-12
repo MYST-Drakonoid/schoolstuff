@@ -90,12 +90,21 @@ public class MemorizationTool
             Console.WriteLine("welcome to he memorization phase.\n every time the enter key is pressed ");
             Console.WriteLine(" a word will be removed from the verse.\n enter the word 'done' when you wish to quit");
 
+            int fincount = 0;
+            int wordcound = 0;
+
             while (continu == 0)
             {
                 Console.WriteLine(scriptRef);
 
+                fincount ++;
+
                 foreach (string r in scripture)
                 {
+                    if (r == "________")
+                    {
+                        wordcound ++;
+                    }
                     Console.Write(r);
                     Console.Write(" ");
                 }
@@ -166,7 +175,7 @@ public class MemorizationTool
             
             int index = rnd.Next(numList.Count());
 
-
+            int index1 = numList[index];
             //recalls the index of the random number
             
             
