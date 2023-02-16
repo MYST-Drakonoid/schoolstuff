@@ -16,6 +16,7 @@ class Program
         Console.WriteLine(Task2.GetHomeworkList());
 
         WritingAssignment Task3 = new WritingAssignment(myName, "world History", "Nobody expects the spanish inquisition");
+        Console.WriteLine(Task3.GetSummmary());
         Console.WriteLine(Task3.GetWritingInformation());
 
     }
