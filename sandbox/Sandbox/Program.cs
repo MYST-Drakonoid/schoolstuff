@@ -1,9 +1,10 @@
 using System;
 
-class Program
+class program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Sandbox World!");
+        Builder.Services.AddScoped<ICSVService, CSVService>();
     }
 }
+    
