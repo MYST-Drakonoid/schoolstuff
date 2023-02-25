@@ -66,8 +66,8 @@ public class Base
 
         public int HowLong(int periods)
         {
-            Console.WriteLine("how many iterations of this activity would you like to participate in?");
-            Console.WriteLine($"each iteration lasts {periods} seconds");
+            Console.WriteLine("how many periods of time in this activity would you like to participate in?");
+            Console.WriteLine($"each period lasts {periods} seconds");
             int length = int.Parse(Console.ReadLine());
             return length;
         }
