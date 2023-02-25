@@ -9,6 +9,13 @@ class Program
         Console.WriteLine("welcome to the wellness activity! Here you will have");
         Console.WriteLine("several options for activitiers desogned to encourage wellness.");
         Base menu = new Base();
-        menu.MainMenu();
+         menu.MenuList();
+                Console.Write(">>>");
+                userInput = Console.ReadLine();
+
+                if (userInput == "1");
+                {
+                    
+                }
     }
 }
