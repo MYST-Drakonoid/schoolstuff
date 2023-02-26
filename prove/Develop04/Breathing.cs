@@ -8,17 +8,17 @@ public class Breathing : Base
                 int iterations = base.HowLong(4);
                 Console.WriteLine("the program will show instructions to breath in and to breath out.");
                 Console.WriteLine("clear your mind and just follow the instructions as they appear.");
-                base.WaitAnimation();
+                WaitAnimation();
 
                 while (iterations != 0)
                 {
                     Console.Clear();
                     Console.Write("breath in... ");
-                    base.WaitAnimation();
+                    WaitAnimation();
                     Console.Write("breath out... ");
-                    base.WaitAnimation();
+                    WaitAnimation();
 
-                    iterations -- 1;
+                    iterations = iterations - 1;
 
                 }
             }

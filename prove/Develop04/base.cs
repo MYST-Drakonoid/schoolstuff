@@ -8,18 +8,12 @@ public class Base
         string userInput = "";
         public void MainMenu()
         {
-            while (quit == false)
-            {
-
-                
-
-                
-            }
+            
         }
 
         public void MenuList()
         {
-            Console.WriteLine("Please select a number from the following menu options");
+            Console.WriteLine("Please select a number from the following menu options (type quit to exit)");
             Console.WriteLine("1. Breathing");
             Console.WriteLine("2. Reflection");
             Console.WriteLine("3. Listing");
@@ -71,5 +65,19 @@ public class Base
             int length = int.Parse(Console.ReadLine());
             return length;
         }
+
+        public async void textFile(string filename, List<string> LISTED)
+            {
+            
+            using StreamWriter file = new($"{filename}.txt");
+
+            foreach (string line in LISTED)
+            {
+                if (!line.Contains("Second"))
+                {
+                    await file.WriteLineAsync(line);
+                }
+            }
+            }
 
     }

@@ -15,12 +15,16 @@ public class Listing : Base
 
 
                 DateTime CurrentTime = DateTime.Now;
-                List<string> listing = new List<string>;
-                while (CurrentTime != FutureTime)
+                List<string> listing = new List<string>();
+                while (CurrentTime < FutureTime)
                 {
                     CurrentTime = DateTime.Now;
                     Console.Write(">>>");
                     listing.Add(Console.ReadLine());
                 }
+
+                Console.Write("please enter a filename: ");
+                string filename = Console.ReadLine();
+                textFile(filename, listing);
             }
     }
