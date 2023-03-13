@@ -17,8 +17,8 @@ class MainMenu : ProgramBase
         {
             CreateScoreFile();
         }
-        ProgramBase info = new MMinfo();
-        List<string> infolist = info.GetFileInfo("infoFile.txt");
+        MMinfo info = new MMinfo();
+        List<string> infolist = info.GetFileInfomm("infoFile.txt");
 
         int number = 1;
         Console.WriteLine("please enter the goal you would like to report as finished");
@@ -43,7 +43,7 @@ class MainMenu : ProgramBase
 }
 class MMinfo : ProgramBase
 {
-    public override List<string> GetFileInfo(string fileName)
+    public  List<string> GetFileInfomm(string fileName)
     {
         List<string> events = GetFileInfo("infoFile.txt");
         List<string> MMinfo = new List<string>();
