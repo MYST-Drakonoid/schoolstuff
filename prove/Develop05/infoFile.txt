@@ -1,3 +1,0 @@
-running task, 100, 0, simple
-scriptures, 200, 0, Egoal
-attend temple, 700, 1, 7

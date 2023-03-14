@@ -1,22 +1,11 @@
 using System.IO;
 using System;
 
-class MainMenu : ProgramBase
+public class MainMenu : ProgramBase
 {
     public void CreateFile()
     {
-        string infofilename = "infoFile.txt";
-        string scoreFile = "scoreFile.txt";
-
-        if (File.Exists(infofilename) == false)
-        {
-            CreateInfoFile();
-
-        }
-        if (File.Exists(scoreFile) == false)
-        {
-            CreateScoreFile();
-        }
+       string scoreFile = "scoreFile.txt";
         MMinfo info = new MMinfo();
         List<string> infolist = info.GetFileInfomm("infoFile.txt");
 
@@ -36,12 +25,12 @@ class MainMenu : ProgramBase
         string[] modscore = reportedScore.Split(",");
         reportedScore = modscore[0];
         int returnedscore = task1.reporter("infoFile.txt", reportedScore);
-        SaveFile(scoreFile, returnedscore);
+        
     }
 
     
 }
-class MMinfo : ProgramBase
+public class MMinfo : ProgramBase
 {
     public  List<string> GetFileInfomm(string fileName)
     {
@@ -55,3 +44,24 @@ class MMinfo : ProgramBase
         return MMinfo;
     }
 }
+    public class SystCheck : ProgramBase
+        {
+            public static void syst()
+            {
+             string infofilename = "infoFile.txt";
+            string scoreFile = "scoreFile.txt";
+
+            if (File.Exists(infofilename) == false)
+                {
+                    CreateInfoFile();
+
+                }
+            if (File.Exists(scoreFile) == false)
+                {
+                    CreateScoreFile();
+                }
+            }
+        }
+        
+        
+

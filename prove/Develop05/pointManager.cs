@@ -1,6 +1,6 @@
 using System;
 
-class ProgramBase
+public class ProgramBase
 {
     
     
@@ -13,7 +13,7 @@ class ProgramBase
         {
             string[] lines = System.IO.File.ReadAllLines(filename);
 
-            File.Create(filename).Close();
+            
 
             foreach (string line in lines)
             {
@@ -33,6 +33,15 @@ class ProgramBase
                 }
               
             }
+            foreach (string item in lines)
+            {
+                using (StreamWriter outputFile = new StreamWriter(filename, append: false))
+                {
+                    outputFile.WriteLine(item);
+                }
+                
+            }
+            break;
 
             
                 
@@ -51,7 +60,7 @@ class ProgramBase
                     string newitem = Console.ReadLine();
                     Console.WriteLine("does this goal have an end? Y/N");
                     string endlessYN = Console.ReadLine();
-                    if (endlessYN.ToLower() == "y")
+                    if (endlessYN.ToLower() == "n")
                     {
                         endless = "egoal";
                     }
@@ -82,6 +91,7 @@ class ProgramBase
 
         foreach (string item in lines)
         {
+            
             events.Add(item);
         }
         return events;
@@ -108,6 +118,43 @@ class ProgramBase
     
     
     }
+    public class PointRecall
+    {
+    
+
+    public virtual string[] Findpoints(string fileName,string eventName)
+        {
+            string[] One_Piece = eventName.Split();
+            string[] lines = System.IO.File.ReadAllLines(fileName);
+            
+            string event2 = eventName.ToLower();
+            foreach (string item in lines)
+            {
+                string[] piece = item.Split(",");
+                string event1 = piece[0].ToLower();
+                if (event2 == event1)
+                {
+                    One_Piece = item.Split(",");
+                    
+                    
+                }
+            }
+            
+            Console.WriteLine(One_Piece);
+            return One_Piece;
+        }
+    }
+
+public class scoreFinder : PointRecall
+    {
+        public string filename1 = "scoreFile.txt";
+        string eventname1 = "score";
+
+    public override string[] Findpoints(string fileName = "scoreFile.txt", string eventName = "score") 
+    {
+        return (base.Findpoints(filename1, eventname1));
+    }
 
 
-
+        
+    }
