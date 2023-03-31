@@ -17,102 +17,121 @@ public class Translator
 
     private void TranslateBinary(string fileinfo, List<string> DB) 
     {
-        string[] file = System.IO.File.ReadAllLines(fileinfo);
-        using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.exe", append: false))
+        string[] filefull = System.IO.File.ReadAllLines(fileinfo);
+        using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.txt", append: false))
         {
             translatedFIle.WriteLine("translated Binary file");
             translatedFIle.WriteLine("");
         }
         int count = 0;
-        foreach (string item in file)
-        {
-            string TranslateResult = "";
-            if (item == "00100000")
+        
+            foreach (string thing in filefull)
             {
-                SW_write(" ");
-            }
-
-            foreach (string data in DB)
-            {
-                string[] SplitData = data.Split(",");
-                if (SplitData[1] == item)
+                string[] file = thing.Split();
+                
+                foreach (string item in file)
                 {
-                    TranslateResult = SplitData[0];
-                }
-            }
-            if (count < 50)
-            {
-                SW_write(TranslateResult);
-                count ++;
-            }
-            else if (count >= 50 && TranslateResult == " ") 
-            {
-                SW_writeline(TranslateResult);
-                count = 1;
-            }
-            else if (count >= 50 && TranslateResult != " ")
-            {
-                SW_write(TranslateResult);
-                count ++;
-            }
-            
-        }
+                    string TranslateResult = "";
+                    if (item == "00100000")
+                    {
+                        SW_write(" ");
+                    }
+                    else {
+                    foreach (string data in DB)
+                    {
+                        string[] SplitData = data.Split(",");
+                        if (SplitData[1] == item)
+                        {
+                            TranslateResult = SplitData[0];
+                        }
+                    }
+                    if (count < 50)
+                    {
+                        SW_write(TranslateResult);
+                        count ++;
+                    }
+                    else if (count >= 50 && TranslateResult == " ") 
+                    {
+                        SW_writeline(TranslateResult);
+                        count = 1;
+                    }
+                    else if (count >= 50 && TranslateResult != " ")
+                    {
+                        SW_write(TranslateResult);
+                        count ++;
+                    }
+                
+                }}}
     }
 
     private void TranslateText(string fileinfo, List<string> DB)
     {
-        string[] file = System.IO.File.ReadAllLines(fileinfo);
-        using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.exe", append: false))
+        string[] filefull = System.IO.File.ReadAllLines(fileinfo);
+        using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.txt", append: false))
         {
             translatedFIle.WriteLine("translated text file");
             translatedFIle.WriteLine("");
         }
-        foreach(string item in file)
+        string[] file;
+        foreach (string thing in filefull)
         {
-            string translateResult = "";
+            file = thing.Split();
+        
             int count = 0;
-            string[] splitWord = item.Split();
-            foreach (string part in splitWord)
+            foreach(string item in file)
             {
-                foreach (string data in DB)
+                string translateResult;
+                
+                char[] splitWord = item.ToCharArray();
+                foreach (char part in splitWord)
                 {
-                    string[] SplitData = data.Split(",");
-                    if (SplitData[0] == item)
+                    foreach (string data in DB)
                     {
-                        translateResult = SplitData[1];
+                        string[] SplitData = data.Split(",");
+                        char[] datapart = SplitData[0].ToCharArray();
+                        if (SplitData[0] == item)
+                        {
+                            translateResult = SplitData[1];
+                        
+                        
+                
+                if (count != 8)
+                {
+                    SW_write($"{translateResult} ");
                     
+                    count ++;
+                }
+                else
+                {
+                    SW_writeline($"{translateResult} ");
+                    
+                    count = 1;
+                }
                     }
+                    
+                    SW_write("00100000 ");
+                    count ++;
+                    }
+                
             }
-            if (count != 8)
-            {
-                SW_write($"{translateResult} ");
-                SW_write("00100000 ");
-                count ++;
             }
-            else
-            {
-                SW_writeline($"{translateResult} ");
-                SW_write("00100000 ");
-                count = 1;
-            }
-            
-        }
     }
 
     }
      void SW_write(string text)
     {
-        using (StreamWriter translatedFIle = new StreamWriter("TranslateFile.exe", append: true))
+        using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.txt", append: true))
             {
                 translatedFIle.Write(text);
             }
     }
      void SW_writeline(string text)
     {
-        using (StreamWriter translatedFIle = new StreamWriter("TranslateFile.exe", append: true))
+        using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.txt", append: true))
             {
                 translatedFIle.WriteLine(text);
             }
     }
 
 }
+

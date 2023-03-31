@@ -1,12 +1,4 @@
-public class FileCreator
-{
-    public void CreateFile(string filename)
-    {
 
-    }
-
-
-}
 
 public class MainMenu
 {
@@ -20,17 +12,12 @@ public class MainMenu
         bool binary = true;
         List<string> DB = new List<string>();
         
-
-
-
-
-
-
-
-
-        
-        Console.WriteLine("please enter the file that you wish to be translated");
+        Console.WriteLine("please enter the file, with file extension, that you wish to be translated");
         filedata = Console.ReadLine();
+        binary = FTI.IsFileBinary(filedata);
+        DB = dataBase.ReadDatabase("binary letters.csv");
+        translator.TranslateFile(filedata, DB, binary);
+
     }
 
      
