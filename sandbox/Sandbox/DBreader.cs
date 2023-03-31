@@ -15,20 +15,3 @@ public class DataBaseReader
  
     }
 
-public class Charactor
-{
-
-    string symbol(string text, bool Binary)
-    {
-        if (Binary == true)
-        {
-            
-        }
-        return null;
-    }
-    string Binary(string numbers)
-    {
-        
-        return null;
-    }
-}
