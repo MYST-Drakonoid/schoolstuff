@@ -24,7 +24,7 @@ public class MainMenu
         Console.WriteLine("translating file...");
         WaitAnimation();
         translator.TranslateFile(filedata, textDB, numDB, binary);
-
+        Console.WriteLine("file has been translated. will be located where you stored the original file");
     }
 
     public void WaitAnimation()
@@ -33,36 +33,43 @@ public class MainMenu
 
             Thread.Sleep(500);
 
-            Console.Write("\b \b");
+            ClearCurrentConsoleLine();
             Console.Write("//"); 
             Thread.Sleep(500);
 
-            Console.Write("\b \b");
+            ClearCurrentConsoleLine();
             Console.Write("--"); 
             Thread.Sleep(500);
 
-            Console.Write("\b \b");
+            ClearCurrentConsoleLine();
             Console.Write("\\");
             Thread.Sleep(500);
 
-            Console.Write("\b \b");
+            ClearCurrentConsoleLine();
             Console.Write("||");
 
             Thread.Sleep(500);
 
-            Console.Write("\b \b");
+            ClearCurrentConsoleLine();
             Console.Write("//"); 
             Thread.Sleep(500);
 
-            Console.Write("\b \b");
+            ClearCurrentConsoleLine();
             Console.Write("--"); 
             Thread.Sleep(500);
 
-            Console.Write("\b \b");
+            ClearCurrentConsoleLine();
             Console.Write("\\");
             Thread.Sleep(500);
 
-            Console.Write("\b \b");
+            ClearCurrentConsoleLine();
         }
+        public static void ClearCurrentConsoleLine()
+            {
+                int currentLineCursor = Console.CursorTop;
+                Console.SetCursorPosition(0, Console.CursorTop);
+                Console.Write(new string(' ', Console.WindowWidth)); 
+                Console.SetCursorPosition(0, currentLineCursor);
+            }
      
 }
