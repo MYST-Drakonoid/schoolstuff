@@ -2,21 +2,23 @@ using System;
 
 public class Translator
 {
-    public void TranslateFile(string fileinfo, List<string> DB, bool binarycondition)
+    public void TranslateFile(string fileinfo, List<string> textDB, List<string> numDB, bool binarycondition)
     {
         if (binarycondition == true)
         {
-            TranslateBinary(fileinfo, DB);
+            TranslateBinary(fileinfo, textDB, numDB);
         }
         else
         {
-            TranslateText(fileinfo, DB);
+            TranslateText(fileinfo, textDB, numDB);
         }
     }
 
 
-    private void TranslateBinary(string fileinfo, List<string> DB) 
+    private void TranslateBinary(string fileinfo, List<string> textDB, List<string> numDB) 
     {
+        string result;
+        string[] TeilFile;
         string[] filefull = System.IO.File.ReadAllLines(fileinfo);
         using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.txt", append: false))
         {
@@ -25,107 +27,106 @@ public class Translator
         }
         int count = 0;
         
-            foreach (string thing in filefull)
-            {
-                string[] file = thing.Split();
-                
-                foreach (string item in file)
-                {
-                    string TranslateResult = "";
-                    if (item == "00100000")
-                    {
-                        SW_write(" ");
-                    }
-                    else {
-                    foreach (string data in DB)
-                    {
-                        string[] SplitData = data.Split(",");
-                        if (SplitData[1] == item)
-                        {
-                            TranslateResult = SplitData[0];
-                        }
-                    }
-                    if (count < 50)
-                    {
-                        SW_write(TranslateResult);
-                        count ++;
-                    }
-                    else if (count >= 50 && TranslateResult == " ") 
-                    {
-                        SW_writeline(TranslateResult);
-                        count = 1;
-                    }
-                    else if (count >= 50 && TranslateResult != " ")
-                    {
-                        SW_write(TranslateResult);
-                        count ++;
-                    }
-                
-                }}}
-    }
+           foreach (string tiel in filefull)
+           {
+            TeilFile = tiel.Split();
+            
 
-    private void TranslateText(string fileinfo, List<string> DB)
-    {
-        string[] filefull = System.IO.File.ReadAllLines(fileinfo);
-        using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.txt", append: false))
-        {
-            translatedFIle.WriteLine("translated text file");
-            translatedFIle.WriteLine("");
-        }
-        string[] file;
-        foreach (string thing in filefull)
-        {
-            file = thing.Split();
-        
-            int count = 0;
-            foreach(string item in file)
+            foreach (string teil in TeilFile)
             {
-                string translateResult;
-                
-                char[] splitWord = item.ToCharArray();
-                foreach (char part in splitWord)
+
+                if (teil == "00100000")
                 {
-                    foreach (string data in DB)
-                    {
-                        string[] SplitData = data.Split(",");
-                        char[] datapart = SplitData[0].ToCharArray();
-                        if (SplitData[0] == item)
-                        {
-                            translateResult = SplitData[1];
-                        
-                        
-                
-                if (count != 8)
-                {
-                    SW_write($"{translateResult} ");
-                    
-                    count ++;
+                    result = " ";
                 }
                 else
                 {
-                    SW_writeline($"{translateResult} ");
-                    
-                    count = 1;
+                    int indx = numDB.IndexOf(teil);
+                    result = textDB[indx];
                 }
-                    }
-                    
-                    SW_write("00100000 ");
+
+
+                if (count < 50)
+                {
+                    SW_write(result);
                     count ++;
-                    }
-                
+                }
+                else if (count >= 50 && result == " ")
+                {
+                    SW_writeline();
+                    count = 0;
+                }
+                else if (count >= 50 && result != " ")
+                {
+                    SW_write(result);
+                }
+
             }
-            }
+           }
+           
     }
 
+    private void TranslateText(string fileinfo, List<string> textDB, List<string> numDB)
+    {
+        string result;
+        int count = 0;
+        string[] filefull = System.IO.File.ReadAllLines(fileinfo);
+        using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.txt", append: false))
+        {
+            translatedFIle.WriteLine("translated binary file");
+            translatedFIle.WriteLine("");
+
+            foreach (string teil in filefull)
+            {
+                string[] teilfile = teil.Split();
+
+                foreach (string word in teilfile)
+                {   
+                    count = count;
+                    char[] charteil = word.ToCharArray();
+
+                    foreach (char letter in charteil)
+                    {
+                        int indx = textDB.IndexOf(letter.ToString());
+                        result = numDB[indx];
+
+                        if (count != 8)
+                        {
+                            SW_write("00100000");
+                            count ++;
+                        }
+                        else
+                        {
+                            SW_writeline("00100000");
+                            count = 1;
+                        }
+                    }
+                    if (count != 8)
+                    {
+                        SW_write("00100000");
+                        count ++;
+                    }
+                    else
+                    {
+                        SW_writeline("00100000");
+                        count = 1;
+                    }
+                }
+
+            }
+        }
+       
+    
+
     }
-     void SW_write(string text)
+     void SW_write(string text = "")
     {
         using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.txt", append: true))
             {
                 translatedFIle.Write(text);
             }
     }
-     void SW_writeline(string text)
+     void SW_writeline(string text = "")
     {
         using (StreamWriter translatedFIle = new StreamWriter("TranslatedFile.txt", append: true))
             {
