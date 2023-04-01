@@ -42,7 +42,7 @@ public class Translator
                 }
                 else if(teil == "")
                 {
-                    //this is stupid
+                    result = null;
                 }
                 else
                 {
@@ -51,7 +51,11 @@ public class Translator
                 }
 
                 
-                if (count < 50)
+                if (result == null)
+                {
+                    //dont do a gosh darn thing
+                }
+                else if(count < 50)
                 {
                     SW_write(result);
                     count ++;

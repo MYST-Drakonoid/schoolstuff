@@ -2,10 +2,12 @@ using System;
 
 public class FileTypeIdentifer
 {
+    MainMenu MM = new MainMenu();
     public bool IsFileBinary(string filename)
     {
         Console.WriteLine("checking to see if the file is binary");
         List<char> f16 = GetFirst16(filename);
+        MM.WaitAnimation();
         Console.WriteLine("obtained first 16 characters, processing info...");
         bool result = IsStringBinary(f16);
         string entry = "";
@@ -17,6 +19,7 @@ public class FileTypeIdentifer
         {
             entry = "text";
         }
+        MM.WaitAnimation();
         Console.WriteLine($"the text file is in {entry}");
         return result;
     }
