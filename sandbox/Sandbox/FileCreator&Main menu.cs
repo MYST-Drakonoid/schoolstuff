@@ -11,7 +11,7 @@ public class MainMenu
         string filedata;
         bool binary = true;
         List<string> textDB = new List<string>();
-        List<string> numDB = new List<string>();
+        List<int> numDB = new List<int>();
         
         Console.WriteLine("please enter the file, with file extension, that you wish to be translated");
         filedata = Console.ReadLine();

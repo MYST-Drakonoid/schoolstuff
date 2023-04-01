@@ -53,7 +53,7 @@ public class FileTypeIdentifer
         bool answer = false;
         foreach (char item in f16)
         {
-            if (item.ToString() == "1" | item.ToString() == "0")
+            if (item.ToString() == "1" | item.ToString() == "0" | item.ToString() == " ")
             {
                 truecount ++;
             }
